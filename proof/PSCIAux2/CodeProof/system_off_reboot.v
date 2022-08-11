@@ -137,7 +137,8 @@ Section CodeProof.
                                          (Tcons Tptr Tnil) tvoid cc_default).
     Local Opaque buffer_unmap_spec.
 
-    (* Lemma system_off_reboot_body_correct:
+
+    Lemma system_off_reboot_body_correct:
       forall m d d' env le rec_base rec_offset
              (Henv: env = PTree.empty _)
              (Hinv: high_level_invariant d)
@@ -145,8 +146,108 @@ Section CodeProof.
              (Hspec: system_off_reboot_spec0 (rec_base, rec_offset) d = Some d'),
            exists le', (exec_stmt ge env le ((m, d): mem) system_off_reboot_body E0 le' (m, d') Out_normal).
     Proof.
-      solve_code_proof Hspec system_off_reboot_body; eexists; solve_proof_low.
-    Qed. *)
+      solve_code_proof Hspec system_off_reboot_body.
+      destruct p, p0, p1, p3.
+      add_int64 C1 z0; try somega.
+      remember (Int64.repr z0) as ZZ.
+
+      get_loop_body. clear_hyp.
+      set (Hloop := C10). simpl; solve_proof_low.
+      remember
+        (PTree.set _i (Vlong (Int64.repr 0))
+            (PTree.set _rec_list (Vptr p2 (Int.repr z4))
+              (PTree.set _t'5 (Vptr p2 (Int.repr z4))
+                  (PTree.set _g (Vptr p1 (Int.repr z3))
+                    (PTree.set _t'4 (Vptr p1 (Int.repr z3))
+                        (PTree.set _idx (Vlong ZZ)
+                          (PTree.set _t'3 (Vlong ZZ)
+                              (PTree.set _g_rd (Vptr p0 (Int.repr z2))
+                                (PTree.set _t'2 (Vptr p0 (Int.repr z2))
+                                    (PTree.set _g_rec (Vptr p (Int.repr z))
+                                      (PTree.set _t'1 (Vptr p (Int.repr z)) le))))))))))) as le_loop.
+      remember 512 as num.
+      set (P := fun le0 m0 => m0 = (m, r2) /\ le0 = le_loop).
+      set (Q := fun (le0: temp_env) m0 => m0 = (m, r3) /\ le0 ! _rec_list = Some (Vptr p2 (Int.repr z4))).
+      set (Inv := fun le0 m0 n => exists i' adt',
+                      system_off_reboot_loop0 (Z.to_nat (num - n)) 0 z0 (p0, z2) (p2, z4) r2 =
+                        Some (adt', Int64.unsigned i') /\ Int64.unsigned i' = num - n /\
+                        m0 = (m, adt') /\ 0 <= n /\ n <= num /\ le0 ! _i = Some (Vlong i') /\
+                        le0 ! _g_rd = Some (Vptr p0 (Int.repr z2)) /\
+                        le0 ! _rec_list = Some (Vptr p2 (Int.repr z4)) /\
+                        le0 ! _idx = Some (Vlong (Int64.repr z0))).
+      assert(loop_succ: forall N, Z.of_nat N <= num -> exists i' adt',
+                  system_off_reboot_loop0 (Z.to_nat (num - Z.of_nat N)) 0 z0 (p0, z2) (p2, z4) r2 =
+                    Some (adt', Int64.unsigned i')).
+      { add_int64 Hloop z1; try somega.
+        induction N. rewrite Z.sub_0_r. rewrite Hloop. intros. repeat eexists; reflexivity.
+        intros. erewrite loop_ind_sub1 in IHN; try omega.
+        rewrite Nat2Z.inj_succ, succ_plus_1 in H.
+        assert(Hcc: Z.of_nat N <= num) by omega.
+        apply IHN in Hcc. destruct Hcc as (? & ? & Hnext).
+        Local Opaque Z.of_nat. simpl in Hnext. clear Heqle_loop.
+        simpl_func Hnext; try add_int64' z5; try somega; repeat eexists. }
+      assert (T: LoopProofSimpleWhile.t (external_calls_ops := CompatExternalCalls.compatlayer_extcall_ops L) cond body ge (PTree.empty _) P Q).
+      { apply LoopProofSimpleWhile.make with (W:=Z) (lt:=fun z1 z2 => (0 <= z2 /\ z1 < z2)) (I:=Inv).
+        - apply Zwf_well_founded.
+        - unfold P, Inv. intros ? ? CC. destruct CC as [CC1 CC2].
+          rewrite CC2 in *. exists num.
+          replace (num - num) with 0 by omega. simpl.
+          exists (Int64.repr 0). exists r2.
+          rewrite Heqnum. rewrite Heqle_loop. rewrite HeqZZ.
+          repeat eexists; first [reflexivity|assumption|solve_proof_low].
+        - intros ? ? ? I. unfold Inv in I. destruct I as (? & ? & ? & ? & ? & ? & ? & ? & ? & ? & ?).
+          set (Hnow := H).
+          rewrite Heqbody, Heqcond in *.
+          destruct (n >? 0) eqn:Hn; bool_rel.
+          + eexists. eexists. split_and.
+            * solve_proof_low.
+            * solve_proof_low.
+            * intro CC. inversion CC.
+            * assert(Hlx: Z.of_nat (Z.to_nat (n-1)) <= num) by (rewrite Z2Nat.id; omega).
+              apply loop_succ in Hlx. rewrite Z2Nat.id in Hlx; try omega.
+              intro. destruct Hlx as (? & ? & Hnext). duplicate Hnext.
+              rewrite loop_nat_sub1 in Hnext; try somega.
+              simpl in Hnext. rewrite Hnow in Hnext.
+              autounfold in Hnext; repeat simpl_hyp Hnext;
+                repeat destruct_con; bool_rel; contra; inversion Hnext.
+              rewrite H11, H12 in *; eexists; eexists; split.
+              solve_proof_low.
+              exists (n-1); split. split; solve_proof_low.
+              solve_proof_low; unfold Inv; repeat eexists; first[eassumption|solve_proof_low].
+
+              destruct p4, p6.
+              rewrite H11, H12 in *; eexists; eexists; split.
+              solve_proof_low.
+              exists (n-1); split. split; solve_proof_low.
+              solve_proof_low; unfold Inv; repeat eexists; first[eassumption|solve_proof_low].
+
+              destruct p4.
+              rewrite H11, H12 in *; eexists; eexists; split.
+              solve_proof_low.
+              exists (n-1); split. split; solve_proof_low.
+              solve_proof_low; unfold Inv; repeat eexists; first[eassumption|solve_proof_low].
+          + eexists. eexists. split_and.
+            * solve_proof_low.
+            * solve_proof_low.
+            * intro. unfold Q.
+              assert (n=0) by omega. clear Heqle_loop. subst.
+              sstep. rewrite Hloop in Hnow. inv Hnow.
+              split_and; first[reflexivity|solve_proof_low].
+              somega.
+            * intro CC. inversion CC. }
+        assert (Pre: P le_loop (m, r2)) by (split; reflexivity).
+        pose proof (LoopProofSimpleWhile.termination _ _ _ _ _ _ T _ (m, r2) Pre) as LoopProof.
+        destruct LoopProof as (le' & m' & (exec & Post)).
+        unfold exec_stmt in exec. rewrite Heqle_loop in exec.
+        unfold Q in Post. destruct Post as (Post & Hle'). rewrite Post in exec.
+        eexists; solve_proof_low.
+
+      match goal with
+      | [|- match ?v with Some _ => _ | None => None end = _] =>
+          replace v with (Some (VZ64 (Int64.unsigned ZZ)))
+      end.
+      reflexivity.
+    Qed.
 
   End BodyProof.
 

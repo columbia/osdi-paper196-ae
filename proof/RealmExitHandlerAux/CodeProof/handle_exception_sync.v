@@ -146,6 +146,92 @@ Section CodeProof.
                                               (Tcons Tptr (Tcons tulong Tnil)) tvoid cc_default).
     Local Opaque handle_data_abort_spec.
 
+
+    Lemma handle_exception_sync_body_correct:
+      forall m d d' env le rec_base rec_offset res
+             (Henv: env = PTree.empty _)
+             (Hinv: high_level_invariant d)
+             (HPTrec: PTree.get _rec le = Some (Vptr rec_base (Int.repr rec_offset)))
+             (Hspec: handle_exception_sync_spec0 (rec_base, rec_offset) d = Some (d',Int.unsigned res)),
+      exists le', (exec_stmt ge env le ((m, d): mem) handle_exception_sync_body E0 le' (m, d') (Out_return (Some (Vint res, tuint)))).
+    Proof.
+      solve_code_proof Hspec handle_exception_sync_body.
+      - eexists; solve_proof_low.
+      - get_loop_body. clear_hyp.
+        set (Hloop := C9). simpl. solve_proof_low.
+        remember
+          (PTree.set _info (Vlong (Int64.repr (Z.land z0 (Z.lor 4227858432 65535))))
+              (PTree.set _i (Vint res)
+                (PTree.set _ec (Vlong (Int64.repr (Z.land z0 4227858432)))
+                    (PTree.set _esr (Vlong (Int64.repr z0)) (PTree.set _t'1 (Vlong (Int64.repr z0)) le)))))
+          as le_loop.
+        remember 7 as num.
+        set (P := fun le0 m0 => m0 = (m, r0) /\ le0 = le_loop).
+        set (Q := fun (le0: temp_env) m0 => m0 = (m, d')).
+        set (Inv := fun le0 m0 n => exists i' adt',
+                        handle_exception_sync_loop0 (Z.to_nat (num - n))
+                                                    (Int.unsigned res) rec_base rec_offset r0 =
+                          Some (Int.unsigned i', adt') /\ Int.unsigned i' = num - n /\
+                          m0 = (m, adt') /\ 0 <= n /\ n <= num /\ le0 ! _i = Some (Vint i') /\
+                          le0 ! _rec = Some (Vptr rec_base (Int.repr rec_offset))).
+        assert(loop_succ: forall N, Z.of_nat N <= num -> exists i' adt',
+                    handle_exception_sync_loop0 (Z.to_nat (num - Z.of_nat N)) (Int.unsigned res) rec_base rec_offset r0
+                    = Some (Int.unsigned i', adt')).
+        { add_int Hloop z1; try somega.
+          induction N. rewrite Z.sub_0_r. rewrite Hloop. intros. repeat eexists; reflexivity.
+          intros. erewrite loop_ind_sub1 in IHN; try omega.
+          rewrite Nat2Z.inj_succ, succ_plus_1 in H.
+          assert(Hcc: Z.of_nat N <= num) by omega.
+          apply IHN in Hcc. destruct Hcc as (? & ? & Hnext).
+          Local Opaque Z.of_nat. simpl in Hnext. clear Heqle_loop.
+          simpl_func Hnext; try add_int' z; repeat eexists; try somega. }
+        assert (T: LoopProofSimpleWhile.t (external_calls_ops := CompatExternalCalls.compatlayer_extcall_ops L) cond body ge (PTree.empty _) P Q).
+        { apply LoopProofSimpleWhile.make with (W:=Z) (lt:=fun z1 z2 => (0 <= z2 /\ z1 < z2)) (I:=Inv).
+          - apply Zwf_well_founded.
+          - unfold P, Inv. intros ? ? CC. destruct CC as [CC1 CC2].
+            rewrite CC2 in *. exists num.
+            replace (num - num) with 0 by omega. simpl. add_int' 0; try somega.
+            rewrite Heqnum. rewrite Heqle_loop.
+            repeat eexists; first [reflexivity|assumption|solve_proof_low].
+          - intros ? ? ? I. unfold Inv in I. destruct I as (? & ? & ? & ? & ? & ? & ? & ? & ?).
+            set (Hnow := H).
+            rewrite Heqbody, Heqcond in *.
+            destruct (n >? 0) eqn:Hn; bool_rel.
+            + eexists. eexists. split_and.
+              * solve_proof_low.
+              * solve_proof_low.
+              * intro CC. inversion CC.
+              * assert(Hlx: Z.of_nat (Z.to_nat (n-1)) <= num) by (rewrite Z2Nat.id; omega).
+                apply loop_succ in Hlx. rewrite Z2Nat.id in Hlx; try omega.
+                intro. destruct Hlx as (? & ? & Hnext). duplicate Hnext.
+                rewrite loop_nat_sub1 in Hnext; try somega.
+                simpl in Hnext. rewrite Hnow in Hnext.
+                autounfold in Hnext; repeat simpl_hyp Hnext;
+                  repeat destruct_con; bool_rel; contra; inversion Hnext.
+                rewrite H9, H10 in *; eexists; eexists; split. solve_proof_low.
+                exists (n-1); split. split; solve_proof_low.
+                solve_proof_low; unfold Inv; repeat eexists; first[eassumption|solve_proof_low].
+            + eexists. eexists. split_and.
+              * solve_proof_low.
+              * solve_proof_low.
+              * intro. unfold Q.
+                assert (n=0) by omega. clear Heqle_loop. subst.
+                sstep. rewrite Hloop in Hnow. inv Hnow.
+                split_and; first[reflexivity|solve_proof_low].
+              * intro CC. inversion CC. }
+          assert (Pre: P le_loop (m, r0)) by (split; reflexivity).
+          pose proof (LoopProofSimpleWhile.termination _ _ _ _ _ _ T _ (m, r0) Pre) as LoopProof.
+          destruct LoopProof as (le' & m' & (exec & Post)).
+          unfold exec_stmt in exec. rewrite Heqle_loop in exec.
+          unfold Q in Post. rewrite Post in exec.
+        eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+    Qed.
+
   End BodyProof.
 
 End CodeProof.

@@ -16,7 +16,7 @@ Section SpecLow.
     | S n' =>
       match granule_fill_table_loop0 n' i pte pte_val pte_inc adt with
       | Some (i, pte_val, adt) =>
-        rely is_int64 i; rely is_int64 pte_val;
+        rely is_int i; rely is_int64 pte_val;
         when adt == pgte_write_spec pte (VZ64 i) (VZ64 pte_val) adt;
         Some (i + 1, pte_val + pte_inc, adt)
       | _ => None
@@ -29,7 +29,7 @@ Section SpecLow.
       rely is_int64 pte_val; rely is_int64 pte_inc;
       match granule_fill_table_loop0 (Z.to_nat PGTES_PER_TABLE) 0 pte pte_val pte_inc adt with
       | Some (i, pte_val, adt) =>
-        rely is_int64 i; rely is_int64 pte_val;
+        rely is_int i; rely is_int64 pte_val;
         Some adt
       | _ => None
       end

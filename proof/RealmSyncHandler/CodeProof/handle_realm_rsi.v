@@ -155,6 +155,20 @@ Section CodeProof.
                                                        Tnil tulong cc_default).
     Local Opaque get_psci_result_forward_x3_spec.
 
+    Ltac solve_func64 val :=
+      try unfold Monad.bind; try unfold ret; simpl;
+      match goal with
+      | [|- match ?v with | Some _ => _ | None => None end = _] =>
+          replace v with (Some (VZ64 (Int64.unsigned (Int64.repr val))))
+      end.
+
+    Ltac solve_func val :=
+      try unfold Monad.bind; try unfold ret; simpl;
+      match goal with
+      | [|- match ?v with | Some _ => _ | None => None end = _] =>
+          replace v with (Some (Int.unsigned (Int.repr val)))
+      end.
+
     Lemma handle_realm_rsi_body_correct:
       forall m d d' env le rec_base rec_offset res
              (Henv: env = PTree.empty _)
@@ -163,7 +177,259 @@ Section CodeProof.
              (Hspec: handle_realm_rsi_spec0 (rec_base, rec_offset) d = Some (d',Int.unsigned res)),
            exists le', (exec_stmt ge env le ((m, d): mem) handle_realm_rsi_body E0 le' (m, d') (Out_return (Some (Vint res, tuint)))).
     Proof.
-      solve_code_proof Hspec handle_realm_rsi_body; eexists; solve_proof_low.
+      solve_code_proof Hspec handle_realm_rsi_body.
+      - eexists. repeat big_vcgen.
+        solve_func64 3355443200. reflexivity.
+        solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func64 z4. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func64 z6. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. somega. somega. simpl.
+        solve_proof_low.
+      - destruct_dis; bool_rel_all. omega.
+        + eexists. repeat big_vcgen.
+          solve_func64 z0. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z2. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z4. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z6. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_proof_low. somega. somega. simpl.
+          repeat big_vcgen.
+          solve_proof_low. simpl.
+          solve_proof_low. solve_proof_low.
+          solve_proof_low. simpl. solve_proof_low.
+          solve_proof_low. solve_proof_low.
+          simpl.
+          repeat big_vcgen.
+          somega.
+          solve_func64 z8. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z10. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z12. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z14. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func 1. reflexivity.
+          solve_proof_low. simpl.
+          repeat big_vcgen.
+          solve_func64 z17. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z19. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z21. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          unfold Swhile.
+          replace E0 with (E0 ** E0 ** E0) by reflexivity.
+          eapply exec_Sloop_loop.
+          solve_proof_low. econstructor.
+          eapply exec_Sskip.
+          replace E0 with (E0 ** E0 ** E0) by reflexivity.
+          eapply exec_Sloop_loop.
+          solve_proof_low. econstructor.
+          eapply exec_Sskip.
+          replace E0 with (E0 ** E0 ** E0) by reflexivity.
+          eapply exec_Sloop_loop.
+          solve_proof_low. econstructor.
+          eapply exec_Sskip. simpl.
+          eapply exec_Sloop_stop1.
+          eapply exec_Sseq_2.
+          solve_proof_low. red; intro T; inv T.
+          econstructor.
+        + eexists. repeat big_vcgen.
+          solve_func64 z0. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z2. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z4. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z6. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_proof_low. somega. somega. simpl.
+          repeat big_vcgen.
+          solve_proof_low. simpl.
+          solve_proof_low. destruct zlt. solve_proof_low. omega.
+          solve_proof_low. solve_proof_low. simpl. solve_proof_low.
+          solve_proof_low. solve_proof_low.
+          rewrite C32. destruct (zeq 1 0); [omega|].
+          destruct zeq. inv e.
+          replace (Int.eq Int.one Int.zero) with false by reflexivity.
+          simpl.
+          repeat big_vcgen.
+          somega.
+          solve_func64 z8. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z10. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z12. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z14. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func 1. reflexivity.
+          solve_proof_low. simpl.
+          repeat big_vcgen.
+          solve_func64 z17. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z19. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          solve_func64 z21. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega.
+          unfold Swhile.
+          replace E0 with (E0 ** E0 ** E0) by reflexivity.
+          eapply exec_Sloop_loop.
+          solve_proof_low. econstructor.
+          eapply exec_Sskip.
+          replace E0 with (E0 ** E0 ** E0) by reflexivity.
+          eapply exec_Sloop_loop.
+          solve_proof_low. econstructor.
+          eapply exec_Sskip.
+          replace E0 with (E0 ** E0 ** E0) by reflexivity.
+          eapply exec_Sloop_loop.
+          solve_proof_low. econstructor.
+          eapply exec_Sskip. simpl.
+          eapply exec_Sloop_stop1.
+          eapply exec_Sseq_2.
+          solve_proof_low. red; intro T; inv T.
+          econstructor.
+      - destruct_dis; bool_rel_all. omega.
+        + eexists. repeat big_vcgen.
+          solve_func64 z0. reflexivity.
+          symmetry. sstep. assumption. somega. somega.
+          solve_func64 z2. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z4. reflexivity.
+          symmetry. sstep. assumption. somega. somega.
+          solve_func64 z6. reflexivity.
+          symmetry. sstep. assumption. somega. somega.
+          solve_proof_low. somega. somega. simpl.
+          repeat big_vcgen.
+          solve_proof_low. simpl.
+          solve_proof_low. solve_proof_low.
+          solve_proof_low. simpl. solve_proof_low.
+          solve_proof_low. solve_proof_low.
+          rewrite <- (Int.repr_unsigned res), <- H1.
+          replace (Int.eq (Int.repr 1) Int.zero) with false by reflexivity.
+          simpl.
+          repeat big_vcgen.
+          somega.
+          solve_func64 z8. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func64 z10. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. rewrite H1. eassumption. somega. somega.
+          solve_func64 z12. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func64 z14. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func z15. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_proof_low. simpl.
+          solve_proof_low.
+        + eexists. repeat big_vcgen.
+          solve_func64 z0. reflexivity.
+          symmetry. sstep. assumption. somega. somega.
+          solve_func64 z2. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_func64 z4. reflexivity.
+          symmetry. sstep. assumption. somega. somega.
+          solve_func64 z6. reflexivity.
+          symmetry. sstep. assumption. somega. somega.
+          solve_proof_low. somega. somega. simpl.
+          repeat big_vcgen.
+          solve_proof_low. simpl.
+          solve_proof_low. destruct zlt. solve_proof_low. omega.
+          solve_proof_low. solve_proof_low. simpl. solve_proof_low.
+          solve_proof_low. solve_proof_low.
+          destruct (zeq 1 0); [omega|].
+          repeat big_vcgen.
+          somega.
+          solve_func64 z8. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func64 z10. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func64 z12. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func64 z14. reflexivity.
+          symmetry. sstep. assumption. somega.
+          sstep. eassumption. somega. somega.
+          solve_func z15. reflexivity.
+          symmetry. sstep. assumption. somega.
+          solve_proof_low. simpl.
+          solve_proof_low.
+      - repeat destruct_dis; bool_rel; try omega.
+        eexists. repeat big_vcgen.
+        solve_func64 z0. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func64 z4. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_func64 z6. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_proof_low. somega. somega. simpl.
+        repeat big_vcgen.
+        solve_proof_low. simpl.
+        solve_proof_low. solve_proof_low.
+        solve_proof_low. simpl. solve_proof_low.
+        solve_proof_low. solve_proof_low. simpl.
+        solve_proof_low.
+        eexists. repeat big_vcgen.
+        solve_func64 z0. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func64 z4. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_func64 z6. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_proof_low. somega. somega. simpl.
+        repeat big_vcgen.
+        solve_proof_low. simpl.
+        solve_proof_low. solve_proof_low.
+        solve_proof_low. simpl. solve_proof_low.
+        solve_proof_low. solve_proof_low. simpl.
+        solve_proof_low.
+        eexists. repeat big_vcgen.
+        solve_func64 z0. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func64 z4. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_func64 z6. reflexivity.
+        symmetry. sstep. assumption. somega. somega.
+        solve_proof_low. somega. somega. simpl.
+        repeat big_vcgen.
+        solve_proof_low. simpl.
+        solve_proof_low. solve_proof_low.
+        solve_proof_low. simpl. solve_proof_low.
+        solve_proof_low. solve_proof_low. simpl.
+        solve_proof_low.
     Qed.
 
   End BodyProof.

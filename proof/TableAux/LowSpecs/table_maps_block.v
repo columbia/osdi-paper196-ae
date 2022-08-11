@@ -16,7 +16,7 @@ Section SpecLow.
     | S n' =>
       match table_maps_block_loop0 n' i ret table base_pa level ipa_state adt with
       | Some (i, ret) =>
-        rely is_int64 i; rely is_int ret;
+        rely is_int i; rely is_int ret;
         when' pgte == pgte_read_spec table (VZ64 i) adt;
         rely is_int64 pgte;
         let expected_pa := base_pa + i * GRANULE_SIZE in
@@ -46,7 +46,7 @@ Section SpecLow.
       if aligned =? 0 then Some 0 else
         match table_maps_block_loop0 (Z.to_nat PGTES_PER_TABLE) 0 1 table base_pa level ipa_state adt with
         | Some (i, ret) =>
-          rely is_int64 i; rely is_int ret;
+          rely is_int i; rely is_int ret;
           Some ret
         | _ => None
         end

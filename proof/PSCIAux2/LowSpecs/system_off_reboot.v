@@ -39,6 +39,7 @@ Section SpecLow.
     when g_rec == get_rec_g_rec_spec rec adt;
 	  when g_rd == get_rec_g_rd_spec rec adt;
 	  when' idx == get_rec_rec_idx_spec rec adt;
+    rely is_int64 idx;
     when g == get_rec_g_rec_list_spec rec adt;
     when adt == granule_lock_spec g_rec adt;
 	  when adt == set_rec_runnable_spec rec 0 adt;
@@ -47,9 +48,8 @@ Section SpecLow.
     match system_off_reboot_loop0 (Z.to_nat MAX_NUM_RECS) 0 idx g_rd rec_list adt with
     | Some (adt, i) =>
       rely is_int64 i;
-      Some adt
+      buffer_unmap_spec rec_list adt
     | _ => None
     end.
-
 
 End SpecLow.
