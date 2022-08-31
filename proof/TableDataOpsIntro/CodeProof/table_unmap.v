@@ -147,6 +147,91 @@ Section CodeProof.
                                            (Tcons Tptr Tnil) tvoid cc_default).
     Local Opaque granule_unlock_spec.
 
+    Lemma table_unmap_body_correct:
+      forall m d d' env le g_rd_base g_rd_offset map_addr level res
+             (Henv: env = PTree.empty _)
+             (Hinv: high_level_invariant d)
+             (HPTg_rd: PTree.get _g_rd le = Some (Vptr g_rd_base (Int.repr g_rd_offset)))
+             (HPTmap_addr: PTree.get _map_addr le = Some (Vlong map_addr))
+             (HPTlevel: PTree.get _level le = Some (Vlong level))
+             (Hspec: table_unmap_spec0 (g_rd_base, g_rd_offset) (VZ64 (Int64.unsigned map_addr)) (VZ64 (Int64.unsigned level)) d = Some (d', VZ64 (Int64.unsigned res))),
+           exists le', (exec_stmt ge env le ((m, d): mem) table_unmap_body E0 le' (m, d') (Out_return (Some (Vlong res, tulong)))).
+    Proof.
+      solve_code_proof Hspec table_unmap_body.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+        unfold cast_int_long.
+        rewrite <- H1. solve_proof_low.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+        unfold cast_int_long.
+        rewrite <- H1. solve_proof_low.
+      - eexists; solve_proof_low.
+        unfold cast_int_long.
+        rewrite <- H1. solve_proof_low.
+      - eexists. repeat big_vcgen.
+        rewrite C26. assumption.
+        solve_func64 z1. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. simpl.
+        repeat big_vcgen.
+        solve_func64 z5. reflexivity.
+        symmetry. sstep. assumption. somega.
+        rewrite <- H1.
+        replace (negb (Int.eq (Int.repr 0) Int.zero)) with false by reflexivity.
+        repeat big_vcgen.
+        solve_proof_low.
+        simpl. repeat big_vcgen.
+        simpl. repeat big_vcgen.
+        reflexivity.
+        simpl. repeat big_vcgen.
+        reflexivity.
+        simpl. repeat big_vcgen.
+        rewrite H1. solve_proof_low.
+      - eexists. repeat big_vcgen.
+        solve_func64 z1. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. simpl.
+        repeat big_vcgen.
+        solve_func64 z5. reflexivity.
+        symmetry. sstep. assumption. somega.
+        rewrite <- H1.
+        replace (negb (Int.eq (Int.repr 0) Int.zero)) with false by reflexivity.
+        repeat big_vcgen.
+        solve_proof_low.
+        simpl. repeat big_vcgen.
+        simpl. repeat big_vcgen.
+        reflexivity.
+        simpl. repeat big_vcgen.
+        reflexivity.
+        simpl. repeat big_vcgen.
+        rewrite H1. solve_proof_low.
+      - eexists. repeat big_vcgen. somega.
+        solve_func64 z1. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. simpl. somega. somega. somega.
+        simpl. repeat big_vcgen.
+        solve_func64 z5. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. simpl. solve_proof_low.
+        simpl. repeat big_vcgen.
+        reflexivity.
+        replace (negb (Int.eq (Int.repr 0) Int.zero)) with false by reflexivity.
+        repeat big_vcgen.
+        solve_proof_low. somega.
+        simpl. solve_proof_low. somega. somega. solve_proof_low.
+        reflexivity. solve_proof_low. reflexivity. solve_proof_low.
+        unfold cast_int_long. solve_proof_low.
+        Grab Existential Variables.
+        assumption.
+    Qed.
+
   End BodyProof.
 
 End CodeProof.

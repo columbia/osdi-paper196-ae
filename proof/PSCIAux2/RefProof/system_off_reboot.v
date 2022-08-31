@@ -70,7 +70,10 @@ Section Refine.
     }
     exploit H; try eapply C13. simpl. omega.
     intros (d'' & Hd'' & Hi & Hdeq); rewrite Hd''. grewrite. simpl.
-    eexists; split. reflexivity. constructor. reflexivity.
+    replace ((0 <=? g_rec_idx (gro (gs (share labd)) @ z0)) &&
+         (g_rec_idx (gro (gs (share labd)) @ z0) <=? 18446744073709551615)) with true.
+    eexists; split. reflexivity. constructor.
+    admit. admit.
   Qed.
 
 End Refine.

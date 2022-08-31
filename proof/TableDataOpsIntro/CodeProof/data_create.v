@@ -182,6 +182,74 @@ Section CodeProof.
                                            (Tcons Tptr Tnil) tvoid cc_default).
     Local Opaque granule_unlock_spec.
 
+
+    Lemma data_create_body_correct:
+      forall m d d' env le g_rd_base g_rd_offset data_addr map_addr g_data_base g_data_offset g_src_base g_src_offset res
+             (Henv: env = PTree.empty _)
+             (Hinv: high_level_invariant d)
+             (HPTg_rd: PTree.get _g_rd le = Some (Vptr g_rd_base (Int.repr g_rd_offset)))
+             (HPTdata_addr: PTree.get _data_addr le = Some (Vlong data_addr))
+             (HPTmap_addr: PTree.get _map_addr le = Some (Vlong map_addr))
+             (HPTg_data: PTree.get _g_data le = Some (Vptr g_data_base (Int.repr g_data_offset)))
+             (HPTg_src: PTree.get _g_src le = Some (Vptr g_src_base (Int.repr g_src_offset)))
+             (Hspec: data_create_spec0 (g_rd_base, g_rd_offset) (VZ64 (Int64.unsigned data_addr)) (VZ64 (Int64.unsigned map_addr)) (g_data_base, g_data_offset) (g_src_base, g_src_offset) d = Some (d', VZ64 (Int64.unsigned res))),
+           exists le', (exec_stmt ge env le ((m, d): mem) data_create_body E0 le' (m, d') (Out_return (Some (Vlong res, tulong)))).
+    Proof.
+      solve_code_proof Hspec data_create_body.
+      -  eexists. solve_proof_low.
+         rewrite <- H1. simpl. somega.
+      - eexists. solve_proof_low.
+        rewrite <- H1. simpl. somega.
+      - eexists. repeat big_vcgen.
+        rewrite <- H1. simpl. somega.
+        rewrite <- H1. simpl. somega. somega.
+        solve_func64 z1. reflexivity. symmetry. solve_proof_low.
+        solve_func z2.  reflexivity. symmetry. sstep. assumption. somega.
+        rewrite <- H1. solve_proof_low. somega. somega. somega.
+        simpl.
+        repeat big_vcgen.
+        solve_func64 z5. reflexivity. symmetry. solve_proof_low.
+        solve_proof_low. somega. somega. somega. somega. somega.
+        simpl. repeat big_vcgen.
+        somega.
+        assert(ns_buffer_read_data_spec 0 (p6, z6) r2 = Some (r3, Int.unsigned (Int.repr 0))).
+        sstep. assumption. somega. eassumption.
+        solve_proof_low.
+        simpl.
+        repeat big_vcgen.
+        simpl. repeat vcgen.
+        reflexivity.
+        simpl. big_vcgen. repeat vcgen.
+        discriminate.
+        reflexivity.
+        simpl. repeat vcgen.
+        simpl. repeat vcgen.
+        simpl. repeat vcgen.
+      - eexists. repeat big_vcgen.
+        somega.
+        solve_func64 z1. reflexivity. symmetry. solve_proof_low.
+        solve_func z2.  reflexivity. symmetry. sstep. assumption. somega.
+        solve_proof_low.
+        simpl. repeat big_vcgen.
+        solve_func64 z5. reflexivity. symmetry. solve_proof_low.
+        solve_proof_low. somega. somega. somega. somega. somega. somega. somega.
+        somega.
+        simpl. repeat big_vcgen.
+        simpl. somega.
+        assert(ns_buffer_read_data_spec (Int64.unsigned res) (p6, z6) r2 = Some (r3, Int.unsigned (Int.repr z7))).
+        sstep. assumption. somega. eassumption. somega. somega.
+        solve_proof_low. somega. somega. somega.
+        simpl. repeat big_vcgen.
+        unfold Int64.or. repeat sstep. simpl in C34. assumption.
+        somega. apply or_le_64. omega. omega. somega. somega. somega. somega.
+        simpl. repeat vcgen.
+        somega. reflexivity.
+        simpl. repeat vcgen. somega. reflexivity.
+        simpl. repeat vcgen.
+        simpl. repeat vcgen. somega. reflexivity.
+        simpl. repeat vcgen. somega.
+    Qed.
+
   End BodyProof.
 
 End CodeProof.

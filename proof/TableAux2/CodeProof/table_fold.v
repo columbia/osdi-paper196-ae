@@ -83,6 +83,42 @@ Section CodeProof.
                                                  (Tcons Tptr (Tcons tulong Tnil)) tvoid cc_default).
     Local Opaque granule_refcount_dec_spec.
 
+   Lemma table_fold_body_correct:
+      forall m d d' env le table_base table_offset level g_tbl_base g_tbl_offset res
+             (Henv: env = PTree.empty _)
+             (Hinv: high_level_invariant d)
+             (HPTtable: PTree.get _table le = Some (Vptr table_base (Int.repr table_offset)))
+             (HPTlevel: PTree.get _level le = Some (Vlong level))
+             (HPTg_tbl: PTree.get _g_tbl le = Some (Vptr g_tbl_base (Int.repr g_tbl_offset)))
+             (Hspec: table_fold_spec0 (table_base, table_offset) (VZ64 (Int64.unsigned level)) (g_tbl_base, g_tbl_offset) d = Some (d', VZ64 (Int64.unsigned res))),
+           exists le', (exec_stmt ge env le ((m, d): mem) table_fold_body E0 le' (m, d') (Out_return (Some (Vlong res, tulong)))).
+    Proof.
+      solve_code_proof Hspec table_fold_body.
+      - eexists; solve_proof_low.
+      - eexists; solve_proof_low.
+        rewrite C8. solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        rewrite C10. sstep. reflexivity. somega.
+      - eexists; solve_proof_low.
+        rewrite C8. solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func z3. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. simpl.
+        solve_proof_low.
+        apply or_le_64. somega. somega. somega. somega.
+        simpl. repeat big_vcgen. rewrite C15. rewrite H1. solve_proof_low.
+      - eexists; solve_proof_low.
+        rewrite C8. solve_func64 z2. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_func z3. reflexivity.
+        symmetry. sstep. assumption. somega.
+        solve_proof_low. simpl.
+        solve_proof_low.
+        simpl. repeat big_vcgen.
+        simpl. rewrite H1. solve_proof_low.
+    Qed.
+
   End BodyProof.
 
 End CodeProof.

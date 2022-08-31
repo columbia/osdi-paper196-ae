@@ -600,6 +600,10 @@ Qed.
 Hypothesis lor_leN_if:
   forall a b N (Hpa: 0 <= a) (Hpb: 0 <= b)  (Hab: a + b <= N), Z.lor a b <= N.
 
+Hypothesis or_le_64:
+  forall a b (Ha: 0 <= a) (Ha': a <= 18446744073709551615) (Hb: 0 <= b) (Hb': b <= 18446744073709551615),
+    Z.lor a b <= 18446744073709551615.
+
 (* Add 0 <= a *)
 Hypothesis shiftl_leN_if:
   forall a b N (Hpa: 0 <= a) (Ha: a * 281474976710656 <= N) (Hb1: 0 <= b) (Hb2: b <= 48), Z.shiftl a b <= N.
@@ -908,6 +912,20 @@ Ltac simpl_hyp H :=
 
 Ltac hsimpl_hyp H :=
   repeat (simpl_hyp H; contra).
+
+Ltac solve_func64 val :=
+  try unfold Monad.bind; try unfold ret; simpl;
+  match goal with
+  | [|- match ?v with | Some _ => _ | None => None end = _] =>
+      replace v with (Some (VZ64 (Int64.unsigned (Int64.repr val))))
+  end.
+
+Ltac solve_func val :=
+  try unfold Monad.bind; try unfold ret; simpl;
+  match goal with
+  | [|- match ?v with | Some _ => _ | None => None end = _] =>
+      replace v with (Some (Int.unsigned (Int.repr val)))
+  end.
 
 Ltac despec exp :=
   simpl in *; srewrite; contra;

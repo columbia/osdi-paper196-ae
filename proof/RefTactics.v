@@ -317,10 +317,6 @@ Ltac simpl_hgoals :=
 Ltac construct_relate :=
   constructor; simpl; autounfold with Replay; simpl; grewrite; try assumption; try reflexivity; simpl_hgoals.
 
-Hypothesis or_le_64:
-  forall a b (Ha: 0 <= a) (Ha': a <= 18446744073709551615) (Hb: 0 <= b) (Hb': b <= 18446744073709551615),
-    Z.lor a b <= 18446744073709551615.
-
 Ltac simpl_query_oracle :=
   repeat match goal with
           | H:query_oracle ?d = Some ?d' |- _ => try unfold query_oracle; unfold query_oracle in H; autounfold in H; repeat simpl_hyp H; inv H; simpl in *

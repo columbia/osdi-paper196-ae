@@ -492,7 +492,6 @@ VFILES:=proof/RelaxedMemory/weakenedWDRF/PageTable.v\
   proof/RealmSyncHandler/Specs/handle_sysreg_access_trap.v\
   proof/RealmSyncHandler/LowSpecs/handle_sysreg_access_trap.v\
   proof/RealmSyncHandler/Code/handle_sysreg_access_trap.v\
-  proof/RealmSyncHandler/RefProof/handle_realm_rsi.v\
   proof/RealmSyncHandler/CodeProof/handle_realm_rsi.v\
   proof/RealmSyncHandler/Specs/handle_realm_rsi.v\
   proof/RealmSyncHandler/LowSpecs/handle_realm_rsi.v\

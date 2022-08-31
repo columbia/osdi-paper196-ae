@@ -137,6 +137,57 @@ Section CodeProof.
                                        (Tcons Tptr (Tcons Tptr (Tcons tulong (Tcons tulong Tnil)))) tvoid cc_default).
     Local Opaque link_table_spec.
 
+    Lemma table_create_aux_body_correct:
+      forall m d d' env le g_rd_base g_rd_offset g_llt_base g_llt_offset g_rtt_base g_rtt_offset llt_pte ll_table_base ll_table_offset level index map_addr rtt_addr
+             (Henv: env = PTree.empty _)
+             (Hinv: high_level_invariant d)
+             (HPTg_rd: PTree.get _g_rd le = Some (Vptr g_rd_base (Int.repr g_rd_offset)))
+             (HPTg_llt: PTree.get _g_llt le = Some (Vptr g_llt_base (Int.repr g_llt_offset)))
+             (HPTg_rtt: PTree.get _g_rtt le = Some (Vptr g_rtt_base (Int.repr g_rtt_offset)))
+             (HPTllt_pte: PTree.get _llt_pte le = Some (Vlong llt_pte))
+             (HPTll_table: PTree.get _ll_table le = Some (Vptr ll_table_base (Int.repr ll_table_offset)))
+             (HPTlevel: PTree.get _level le = Some (Vlong level))
+             (HPTindex: PTree.get _index le = Some (Vlong index))
+             (HPTmap_addr: PTree.get _map_addr le = Some (Vlong map_addr))
+             (HPTrtt_addr: PTree.get _rtt_addr le = Some (Vlong rtt_addr))
+             (Hspec: table_create_aux_spec0 (g_rd_base, g_rd_offset) (g_llt_base, g_llt_offset) (g_rtt_base, g_rtt_offset) (VZ64 (Int64.unsigned llt_pte)) (ll_table_base, ll_table_offset) (VZ64 (Int64.unsigned level)) (VZ64 (Int64.unsigned index)) (VZ64 (Int64.unsigned map_addr)) (VZ64 (Int64.unsigned rtt_addr)) d = Some d'),
+           exists le', (exec_stmt ge env le ((m, d): mem) table_create_aux_body E0 le' (m, d') Out_normal).
+    Proof.
+      solve_code_proof Hspec table_create_aux_body.
+      - eexists; solve_proof_low.
+        rewrite C6. assumption.
+      - eexists; solve_proof_low.
+        rewrite C7. assumption.
+      - eexists. vcgen. vcgen. vcgen. solve_proof_low.
+        vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+        solve_proof_low. solve_proof_low. solve_proof_low.
+        solve_proof_low. solve_proof_low.
+        vcgen. vcgen. vcgen. solve_proof_low. solve_proof_low. solve_proof_low.
+        solve_proof_low. solve_proof_low. solve_proof_low.
+        vcgen. vcgen. vcgen. solve_proof_low.
+        rewrite C8. destruct zeq; try omega. solve_proof_low.
+        reflexivity. solve_proof_low. solve_proof_low.
+      - eexists. vcgen. vcgen. vcgen. solve_proof_low.
+        vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+        solve_proof_low. solve_proof_low. solve_proof_low.
+        solve_proof_low. solve_proof_low.
+        vcgen. vcgen. vcgen. solve_proof_low. solve_proof_low. solve_proof_low.
+        solve_proof_low. solve_proof_low. solve_proof_low.
+        vcgen. vcgen. vcgen. solve_proof_low.
+        rewrite C9. destruct zeq; try omega. solve_proof_low.
+        reflexivity. solve_proof_low. solve_proof_low.
+      - eexists. vcgen. vcgen. vcgen. solve_proof_low.
+        vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+        solve_proof_low. solve_proof_low. solve_proof_low.
+        solve_proof_low. solve_proof_low.
+        vcgen. vcgen. vcgen. solve_proof_low. solve_proof_low. solve_proof_low.
+        solve_proof_low. solve_proof_low. solve_proof_low.
+        vcgen. vcgen. vcgen. solve_proof_low.
+        solve_proof_low.
+        Grab Existential Variables.
+        assumption.
+    Qed.
+
   End BodyProof.
 
 End CodeProof.
