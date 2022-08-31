@@ -184,8 +184,6 @@ Section CodeProof.
         solve_proof_low. solve_proof_low. solve_proof_low.
         vcgen. vcgen. vcgen. solve_proof_low.
         solve_proof_low.
-        Grab Existential Variables.
-        assumption.
     Qed.
 
   End BodyProof.
