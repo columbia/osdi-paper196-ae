@@ -95,7 +95,7 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z6. reflexivity.
       symmetry. sstep. assumption. somega.
@@ -105,9 +105,9 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. big_vcgen. solve_func64 z8. reflexivity.
+      big_vcgen. solve_func64 z8. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -115,9 +115,9 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. big_vcgen. solve_func64 z10. reflexivity.
+      big_vcgen. solve_func64 z10. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -125,9 +125,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z12. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -136,9 +135,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z14. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -147,10 +145,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z16. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -159,10 +155,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z18. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -171,10 +165,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z20. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -183,10 +175,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z22. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -195,11 +185,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z24. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -208,11 +195,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z26. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -221,11 +205,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z28. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -234,11 +215,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z30. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -247,12 +225,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z32. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -261,12 +235,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z34. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -275,12 +245,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z36. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -289,12 +255,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z38. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -303,13 +265,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z40. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -318,13 +275,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z42. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -333,13 +285,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z44. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -348,13 +295,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z46. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -363,14 +305,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z48. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -379,14 +315,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z50. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -395,14 +325,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z52. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -411,14 +335,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z54. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -427,15 +345,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z56. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -444,15 +355,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z58. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -461,15 +365,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z60. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -478,15 +375,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z62. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -495,16 +385,8 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen.
       big_vcgen. solve_func64 z64. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
@@ -513,17 +395,50 @@ Section CodeProof.
 
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
-      vcgen. vcgen. vcgen. vcgen.
       big_vcgen. solve_func64 z66. reflexivity.
+      symmetry. sstep. assumption. somega.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      big_vcgen. solve_func64 z68. reflexivity.
+      symmetry. sstep. assumption. somega.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      big_vcgen. solve_func64 z70. reflexivity.
+      symmetry. sstep. assumption. somega.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      big_vcgen. solve_func64 z72. reflexivity.
+      symmetry. sstep. assumption. somega.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. solve_proof_low.
+
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      simpl. repeat rewrite PTree.gso; try discriminate. eassumption.
+      vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
+      reflexivity.
+      big_vcgen. solve_func64 z74. reflexivity.
       symmetry. sstep. assumption. somega.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
       vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen. vcgen.
